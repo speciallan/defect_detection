@@ -1,0 +1,39 @@
+{
+  "train": {
+    "batch_size": 2,
+    "epochs": 50,
+    "base_lr": 1e-3,
+    "patience": 5,
+    "do_freeze_layers": true,
+    "freeze_layer_stop_name": "",
+    "train_val_split": 0.8,
+    "augmentation": true
+  },
+  "path": {
+    "pretrained_weights": "./h5/pretrained.h5",
+    "base_weights": "./h5/base_{}.h5",
+    "trained_weights": "./h5/result.h5",
+    "chkpnt_weights": "./h5/chkpnt_best_{val_loss:.4f}.h5",
+    "images": "../../data/VOCdevkit/DAGM/train/JPEGImages/",
+    "annotations": "../../data/VOCdevkit/DAGM/train/Annotations/",
+    "test_images": "../../data/VOCdevkit/DAGM/train/JPEGImages/",
+    "test_result": "../../data/VOCdevkit/DAGM/test/results/",
+    "log": "./logs/"
+  },
+  "model": {
+    "_COMMENTO_type": "模型选择: resnet50, resnet101, resnet152",
+    "type": "resnet50",
+    "model_image": false,
+    "classes": [
+      "class1", "class2", "class3", "class4", "class5", "class6", "class7", "class8", "class9", "class10"
+    ],
+    "img_min_size": 512,
+    "img_max_size": 512
+  },
+  "test": {
+    "_COMMENTO1": "保存需要保存annotations注释图像测试图像读取 <test_images>",
+    "_COMMENTO2": "在测试和保存_＜result＞／＜result＞测试图像和/ _ annotations numerandole从<start_index>",
+    "save_annotations": false,
+    "start_index": 1
+  }
+}

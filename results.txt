@@ -1,0 +1,4 @@
+class:0
+gtboxes_num: 100.0
+recall:0.93
+precision:0.9117647058823529
