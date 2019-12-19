@@ -37,7 +37,7 @@ else:
 print("backend: ", config.type)
 
 # 载入预训练权重
-model.load_weights('h5/result.h5', by_name=True, skip_mismatch=True)
+model.load_weights('./h5/result.h5', by_name=True, skip_mismatch=True)
 # wpath = '../taurus_cv/pretrained_models/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
 # model.load_weights(wpath, by_name=True, skip_mismatch=True)
 
