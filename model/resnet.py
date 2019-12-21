@@ -10,6 +10,7 @@ from defect_detection.model.layers import ConvOffset2D
 from keras.utils import get_file
 from keras.layers import *
 from keras import Model, layers, backend
+from keras.applications.densenet import DenseNet121
 # from keras.applications import imagenet_utils
 # from keras.applications.imagenet_utils import imagenet_utils
 
@@ -60,7 +61,8 @@ def resnet_retinanet(num_classes, backbone='resnet50', inputs=None, weights='ima
     # create the resnet backbone
     # splus > snet > snetpp
     # resnet = resnet50(inputs, is_extractor=True)
-    resnet = snet(inputs, is_extractor=True)
+    # resnet = snet(inputs, is_extractor=True)
+    model = DenseNet121(input_tensor=inputs, classes=num_classes, include_top=False, weights='imagenet')
     # resnet = keras_resnet.models.ResNet50(inputs, include_top=False, freeze_bn=True)
     # resnet = keras_resnet.models.ResNet18(inputs, include_top=False, freeze_bn=True)
     # resnet = resnet4(inputs, is_extractor=True)
@@ -77,14 +79,14 @@ def resnet_retinanet(num_classes, backbone='resnet50', inputs=None, weights='ima
     # exit()
 
     # 生成完整模型
-    model = retinanet_bbox(inputs=inputs, num_classes=num_classes, backbone_outputs=resnet.outputs[0:4], **kwargs)
+    retinanet_model = retinanet_bbox(inputs=inputs, num_classes=num_classes, backbone_outputs=model.outputs[0:4], **kwargs)
 
     # optionally load weights
     # if weights_path:
     #     model.load_weights(weights_path, by_name=True, skip_mismatch=True)
     #     print("BACKEND")
 
-    return model, resnet.layers
+    return retinanet_model, model.layers
 
 
 def snet(input, classes_num=2, is_extractor=False, output_layer_name='snet_pool'):

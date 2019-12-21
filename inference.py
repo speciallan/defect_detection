@@ -37,7 +37,7 @@ else:
 
 print("backend: ", config.type)
 
-weights = './h5/result.h5'
+weights = wpath
 model.load_weights(weights, by_name=True, skip_mismatch=True)
 print('load weights {}'.format(weights))
 
